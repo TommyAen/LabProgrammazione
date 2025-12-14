@@ -1,3 +1,0 @@
-C:/Users/tommy/CLionProjects/ProgettoLabProgrammazione/cmake-build-debug/CMakeFiles/ProgettoLabProgrammazione.dir
-C:/Users/tommy/CLionProjects/ProgettoLabProgrammazione/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/tommy/CLionProjects/ProgettoLabProgrammazione/cmake-build-debug/CMakeFiles/rebuild_cache.dir
