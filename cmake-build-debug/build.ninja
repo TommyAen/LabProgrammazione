@@ -61,6 +61,36 @@ build CMakeFiles/ProgettoLabProgrammazione.dir/ContoCorrente.cpp.obj: CXX_COMPIL
   OBJECT_DIR = CMakeFiles\ProgettoLabProgrammazione.dir
   OBJECT_FILE_DIR = CMakeFiles\ProgettoLabProgrammazione.dir
 
+build CMakeFiles/ProgettoLabProgrammazione.dir/Utente.cpp.obj: CXX_COMPILER__ProgettoLabProgrammazione_unscanned_Debug C$:/Users/tommy/CLionProjects/ProgettoLabProgrammazione/Utente.cpp || cmake_object_order_depends_target_ProgettoLabProgrammazione
+  DEP_FILE = CMakeFiles\ProgettoLabProgrammazione.dir\Utente.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\ProgettoLabProgrammazione.dir
+  OBJECT_FILE_DIR = CMakeFiles\ProgettoLabProgrammazione.dir
+
+build CMakeFiles/ProgettoLabProgrammazione.dir/Banca.cpp.obj: CXX_COMPILER__ProgettoLabProgrammazione_unscanned_Debug C$:/Users/tommy/CLionProjects/ProgettoLabProgrammazione/Banca.cpp || cmake_object_order_depends_target_ProgettoLabProgrammazione
+  DEP_FILE = CMakeFiles\ProgettoLabProgrammazione.dir\Banca.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\ProgettoLabProgrammazione.dir
+  OBJECT_FILE_DIR = CMakeFiles\ProgettoLabProgrammazione.dir
+
+build CMakeFiles/ProgettoLabProgrammazione.dir/Transazione.cpp.obj: CXX_COMPILER__ProgettoLabProgrammazione_unscanned_Debug C$:/Users/tommy/CLionProjects/ProgettoLabProgrammazione/Transazione.cpp || cmake_object_order_depends_target_ProgettoLabProgrammazione
+  DEP_FILE = CMakeFiles\ProgettoLabProgrammazione.dir\Transazione.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\ProgettoLabProgrammazione.dir
+  OBJECT_FILE_DIR = CMakeFiles\ProgettoLabProgrammazione.dir
+
+build CMakeFiles/ProgettoLabProgrammazione.dir/TransactionFactory.cpp.obj: CXX_COMPILER__ProgettoLabProgrammazione_unscanned_Debug C$:/Users/tommy/CLionProjects/ProgettoLabProgrammazione/TransactionFactory.cpp || cmake_object_order_depends_target_ProgettoLabProgrammazione
+  DEP_FILE = CMakeFiles\ProgettoLabProgrammazione.dir\TransactionFactory.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\ProgettoLabProgrammazione.dir
+  OBJECT_FILE_DIR = CMakeFiles\ProgettoLabProgrammazione.dir
+
+build CMakeFiles/ProgettoLabProgrammazione.dir/DataStoreCSV.cpp.obj: CXX_COMPILER__ProgettoLabProgrammazione_unscanned_Debug C$:/Users/tommy/CLionProjects/ProgettoLabProgrammazione/DataStoreCSV.cpp || cmake_object_order_depends_target_ProgettoLabProgrammazione
+  DEP_FILE = CMakeFiles\ProgettoLabProgrammazione.dir\DataStoreCSV.cpp.obj.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\ProgettoLabProgrammazione.dir
+  OBJECT_FILE_DIR = CMakeFiles\ProgettoLabProgrammazione.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target ProgettoLabProgrammazione
@@ -69,7 +99,7 @@ build CMakeFiles/ProgettoLabProgrammazione.dir/ContoCorrente.cpp.obj: CXX_COMPIL
 #############################################
 # Link the executable ProgettoLabProgrammazione.exe
 
-build ProgettoLabProgrammazione.exe: CXX_EXECUTABLE_LINKER__ProgettoLabProgrammazione_Debug CMakeFiles/ProgettoLabProgrammazione.dir/main.cpp.obj CMakeFiles/ProgettoLabProgrammazione.dir/ContoCorrente.cpp.obj
+build ProgettoLabProgrammazione.exe: CXX_EXECUTABLE_LINKER__ProgettoLabProgrammazione_Debug CMakeFiles/ProgettoLabProgrammazione.dir/main.cpp.obj CMakeFiles/ProgettoLabProgrammazione.dir/ContoCorrente.cpp.obj CMakeFiles/ProgettoLabProgrammazione.dir/Utente.cpp.obj CMakeFiles/ProgettoLabProgrammazione.dir/Banca.cpp.obj CMakeFiles/ProgettoLabProgrammazione.dir/Transazione.cpp.obj CMakeFiles/ProgettoLabProgrammazione.dir/TransactionFactory.cpp.obj CMakeFiles/ProgettoLabProgrammazione.dir/DataStoreCSV.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ProgettoLabProgrammazione.dir
