@@ -1,0 +1,8 @@
+# File di dati runtime
+utenti.csv
+conti.csv
+transazioni.csv
+
+# Cartelle di build
+cmake-build-debug/
+cmake-build-release/
