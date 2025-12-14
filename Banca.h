@@ -19,7 +19,7 @@ public:
 
     bool registraUtente(const std::string& id, const std::string& pw);
 
-    ContoCorrente* creaConto(Utente& u);
+    ContoCorrente* creaConto(Utente& u, int saldoIniziale);
 
     ContoCorrente* trovaConto(int numero);
     void applicaTransazione(const Transazione& t);

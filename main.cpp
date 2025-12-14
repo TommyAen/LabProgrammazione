@@ -41,9 +41,7 @@ int main() {
     DataStoreCSV::carica(banca);
 
     std::cout << "++++ Benvenuto ++++";
-    while(true){
-        menu_login(banca);
-    }
+    menu_login(banca);
     DataStoreCSV::salva(banca);
     return 0;
 }
@@ -67,7 +65,7 @@ void menu_login(Banca& banca){
             esegui_registrazione(banca);
         } else if (choice == "3") {
             std::cout << "Uscita. Arrivederci!\n";
-            std::exit(0);
+            return;
         } else {
             std::cout << "Scelta non valida, riprova.\n";
         }
@@ -90,47 +88,107 @@ Utente* esegui_login(Banca& banca){
     return u;
 }
 
-void esegui_registrazione(Banca& banca){
-    std::cout<<"\n++++ Registrazione nuovo utente ++++\n";
-    std::cout <<"Scegli ID: ";
+void esegui_registrazione(Banca& banca) {
+    std::cout << "\n++++ Registrazione nuovo utente ++++\n";
+
+    std::cout << "Scegli ID: ";
     std::string id = read_line_trim();
+
     std::cout << "Scegli Password: ";
     std::string pw = read_line_trim();
 
     bool ok = banca.registraUtente(id, pw);
-    if(!ok){
+    if (!ok) {
         std::cout << "ID già esistente. Registrazione annullata\n";
+        wait_enter();
         return;
     }
+
+    // Login automatico dopo registrazione
     Utente* u = banca.login(id, pw);
-    if(u){
-        banca.creaConto(*u);
-        std::cout << "Utente creato e conto iniziale assegnato.\n";
+    if (!u) {
+        std::cout << "Errore interno nella creazione utente.\n";
+        wait_enter();
+        return;
     }
+
+    // Richiesta saldo iniziale
+    std::cout << "Saldo iniziale (EUR, es: 100.50): ";
+    std::string saldoStr = read_line_trim();
+
+    double saldoDouble = 0.0;
+    try { saldoDouble = std::stod(saldoStr); }
+    catch (...) { saldoDouble = -1.0; }
+
+    if (saldoDouble < 0.0) {
+        std::cout << "Saldo non valido. Registrazione annullata.\n";
+        wait_enter();
+        return;
+    }
+
+    int saldoCents = static_cast<int>(std::llround(saldoDouble * 100.0));
+
+    banca.creaConto(*u, saldoCents);
+
+    std::cout << "Utente creato con conto iniziale da "
+              << (saldoCents / 100) << " EUR "
+              << (std::abs(saldoCents) % 100) << "c\n";
+
+    wait_enter();
 }
+
 
 void menu_home(Banca& banca, Utente* user) {
     while (true) {
         std::cout << "\n++++ HOME (" << user->getId() << ") ++++\n";
         std::cout << "1. Visualizza conti\n";
-        std::cout << "2. Modifica profilo\n";
-        std::cout << "3. Fai transazione\n";
-        std::cout << "4. Logout (torna al login)\n";
+        std::cout << "2. Crea nuovo conto corrente\n";
+        std::cout << "3. Modifica profilo\n";
+        std::cout << "4. Fai transazione\n";
+        std::cout << "5. Logout (torna al login)\n";
         std::cout << "Scelta: ";
         std::string choice = read_line_trim();
 
         if (choice == "1") {
             visualizza_conti(banca, user);
-        } else if (choice == "2") {
+        }
+        else if (choice == "2") {
+            std::cout << "Saldo iniziale (EUR, es: 100.50): ";
+            std::string saldoStr = read_line_trim();
+
+            double saldoDouble = 0.0;
+            try { saldoDouble = std::stod(saldoStr); } catch (...) { saldoDouble = 0.0; }
+
+            if (saldoDouble < 0.0) {
+                std::cout << "Saldo non valido.\n";
+                wait_enter();
+                return;
+            }
+
+            int saldoCents = static_cast<int>(std::llround(saldoDouble * 100.0));
+
+            ContoCorrente* c = banca.creaConto(*user, saldoCents);
+
+            std::cout << "Conto creato con saldo iniziale di "
+                      << (saldoCents / 100) << " EUR "
+                      << (std::abs(saldoCents) % 100) << "c\n";
+
+            wait_enter();
+        }
+        else if (choice == "3") {
             modifica_profilo(user);
-        } else if (choice == "3") {
+        }
+        else if (choice == "4") {
             fai_transazione(banca, user);
-        } else if (choice == "4") {
+        }
+        else if (choice == "5") {
             std::cout << "Logout effettuato.\n";
-            return; // torna al login
-        } else {
+            return;
+        }
+        else {
             std::cout << "Scelta non valida.\n";
         }
+
     }
 }
 

@@ -21,13 +21,18 @@ bool Banca::registraUtente(const std::string& id, const std::string& pw) {
 }
 
 
-ContoCorrente* Banca::creaConto(Utente& u) {
+ContoCorrente* Banca::creaConto(Utente& u, int saldoIniziale) {
     int nuovoNumero = conti.size() + 1;
-    conti.emplace(nuovoNumero, ContoCorrente(nuovoNumero, u.getId()));
+
+    ContoCorrente conto(nuovoNumero, u.getId());
+    conto.setSaldo(saldoIniziale);
+
+    conti.emplace(nuovoNumero, conto);
     u.aggiungiConto(nuovoNumero);
-    auto it = conti.find(nuovoNumero);
-    return &it->second;
+
+    return &conti.find(nuovoNumero)->second;
 }
+
 
 ContoCorrente* Banca::trovaConto(int numero) {
     auto it = conti.find(numero);

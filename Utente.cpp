@@ -23,3 +23,7 @@ void Utente::aggiungiConto(int numeroConto){
 void Utente::setPassword(const std::string &newPw) {
     password = newPw;
 }
+
+const std::string &Utente::getPassword() const {
+    return password;
+}

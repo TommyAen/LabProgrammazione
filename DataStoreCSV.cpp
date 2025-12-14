@@ -11,16 +11,16 @@ const std::string DataStoreCSV::contiFile = "conti.csv";
 const std::string DataStoreCSV::transazioniFile = "transazioni.csv";
 
 void DataStoreCSV::salva(const Banca& banca) {
-    // ===== UTENTI =====
+    //utenti
     {
         std::ofstream out(utentiFile);
         out << "idUtente,password\n";
         for (const auto& [id, u] : banca.getUtenti()) {
-            out << u.getId() << "," << "HIDDEN\n"; // password reale non esposta
+            out << u.getId() << "," << u.getPassword() << "\n";
         }
     }
 
-    // ===== CONTI =====
+    //conti
     {
         std::ofstream out(contiFile);
         out << "numeroConto,saldo,idUtente\n";
@@ -31,7 +31,7 @@ void DataStoreCSV::salva(const Banca& banca) {
         }
     }
 
-    // ===== TRANSAZIONI =====
+    //transazioni
     {
         std::ofstream out(transazioniFile);
         out << "id,contoUscita,contoIngresso,importo,data\n";
@@ -48,7 +48,7 @@ void DataStoreCSV::salva(const Banca& banca) {
 }
 
 void DataStoreCSV::carica(Banca& banca) {
-    // ===== UTENTI =====
+    //utenti
     {
         std::ifstream in(utentiFile);
         std::string line;
@@ -62,7 +62,7 @@ void DataStoreCSV::carica(Banca& banca) {
         }
     }
 
-    // ===== CONTI =====
+    //conti
     {
         std::ifstream in(contiFile);
         std::string line;
@@ -82,7 +82,7 @@ void DataStoreCSV::carica(Banca& banca) {
         }
     }
 
-    // ===== TRANSAZIONI =====
+    //transazioni
     {
         std::ifstream in(transazioniFile);
         std::string line;

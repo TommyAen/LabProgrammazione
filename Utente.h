@@ -23,8 +23,8 @@ public:
 
     const std::vector<int>& getConti() const;
     void aggiungiConto(int numeroConto);
-
     void setPassword(const std::string& newPw);
+    const std::string& getPassword() const;
 };
 
 
