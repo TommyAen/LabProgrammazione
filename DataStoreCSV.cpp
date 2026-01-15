@@ -5,6 +5,7 @@
 #include "DataStoreCSV.h"
 #include <fstream>
 #include <sstream>
+#include <set>
 
 const std::string DataStoreCSV::utentiFile = "utenti.csv";
 const std::string DataStoreCSV::contiFile = "conti.csv";
@@ -35,13 +36,19 @@ void DataStoreCSV::salva(const Banca& banca) {
     {
         std::ofstream out(transazioniFile);
         out << "id,contoUscita,contoIngresso,importo,data\n";
+
+        std::set<unsigned long> salvate; //per evitare duplicati
+
         for (const auto& [num, c] : banca.getConti()) {
             for (const auto& t : c.getTransazioni()) {
-                out << t.getId() << ","
-                    << t.getContoUscita() << ","
-                    << t.getContoIngresso() << ","
-                    << t.getSomma() << ","
-                    << t.getData() << "\n";
+                if(salvate.contains(t.getId())) {
+                    out << t.getId() << ","
+                        << t.getContoUscita() << ","
+                        << t.getContoIngresso() << ","
+                        << t.getSomma() << ","
+                        << t.getData() << "\n";
+                    salvate.insert(t.getId());
+                }
             }
         }
     }
@@ -58,7 +65,7 @@ void DataStoreCSV::carica(Banca& banca) {
             std::string id, pw;
             std::getline(ss, id, ',');
             std::getline(ss, pw, ',');
-            banca.registraUtente(id, pw);
+            banca.caricaUtenteDaFile(id, pw);
         }
     }
 

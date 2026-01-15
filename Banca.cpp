@@ -5,9 +5,9 @@
 #include "Banca.h"
 
 Utente* Banca::login(const std::string& id, const std::string& pw) {
-    for (auto& [id, u] : utenti) {
-        if (u.getId() == id && u.verificaPassword(pw))
-            return &u;
+    auto it = utenti.find(id);
+    if(it != utenti.end() && it->second.verificaPassword(pw)){
+        return &(it->second);
     }
     return nullptr;
 }
@@ -31,6 +31,13 @@ ContoCorrente* Banca::creaConto(Utente& u, int saldoIniziale) {
     u.aggiungiConto(nuovoNumero);
 
     return &conti.find(nuovoNumero)->second;
+}
+
+void Banca::caricaUtenteDaFile(const std::string& id, const std::string& hash) {
+    Utente u;
+    u.setId(id);
+    u.setPasswordCaricata(hash);
+    utenti[id] = u;
 }
 
 

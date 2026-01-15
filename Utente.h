@@ -25,6 +25,8 @@ public:
     void aggiungiConto(int numeroConto);
     void setPassword(const std::string& newPw);
     const std::string& getPassword() const;
+    void setPasswordCaricata(const std::string& hash);
+    void setId(const std::string& id);
 };
 
 

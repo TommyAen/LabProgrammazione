@@ -26,6 +26,8 @@ public:
     void creaContoDaFile(int numero, int saldo, const std::string& ownerId);
     const std::map<std::string, Utente>& getUtenti() const;
     const std::map<int, ContoCorrente>& getConti() const;
+
+    void caricaUtenteDaFile(const std::string &id, const std::string &hash);
 };
 
 
