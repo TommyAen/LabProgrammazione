@@ -264,17 +264,36 @@ void fai_transazione(Banca& banca, Utente* user) {
         std::cout << "  - " << c->getNumeroConto() << " (saldo: " << (c->getSaldo()/100) << " EUR "
                   << (std::abs(c->getSaldo()) % 100) << "c)\n";
     }
-    std::cout << "Numero conto uscita: ";
-    std::string uscitaStr = read_line_trim();
-    int uscitaNum = 0;
-    try { uscitaNum = std::stoi(uscitaStr); } catch(...) { uscitaNum = 0; }
+    int uscitaNum = -1;
+    ContoCorrente* uscita = nullptr;
+    bool valido = false;
 
-    ContoCorrente* uscita = banca.trovaConto(uscitaNum);
-    if (!uscita) {
-        std::cout << "Conto di uscita non trovato.\n";
-        wait_enter();
-        return;
+    while (!valido) {
+        std::cout << "Numero conto uscita: ";
+        std::string uscitaStr = read_line_trim();
+
+        try {
+            uscitaNum = std::stoi(uscitaStr);
+        } catch (...) {
+            std::cout << "Input non valido.\n";
+            continue;
+        }
+
+        // controllo che il conto appartenga all'utente
+        for (int c : contiList) {
+            if (c == uscitaNum) {
+                valido = true;
+                break;
+            }
+        }
+
+        if (!valido) {
+            std::cout << "Conto non appartenente all'utente. Riprova.\n";
+        }
     }
+
+    uscita = banca.trovaConto(uscitaNum);
+
 
     std::cout << "Numero conto destinatario (inserire numero conto): ";
     std::string destStr = read_line_trim();
